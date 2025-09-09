@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For my beautiful angel Sofia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #1e3c72, #2a5298, #1e3c72, #2a5298);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            overflow: hidden;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinning-line {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8, #ffcccb);
+            transform-origin: center;
+            opacity: 0;
+            animation: lineForm 4s ease-in-out forwards;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.8);
+        }
+
+        @keyframes lineForm {
+            0% {
+                opacity: 1;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
+        .heart-forming-line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff1744, #ff6b6b, #ff1744, transparent);
+            transform-origin: left center;
+            opacity: 0;
+            box-shadow: 0 0 15px rgba(255, 23, 68, 0.9);
+            animation: heartLineMove 2.5s ease-in-out forwards;
+            z-index: 2;
+        }
+
+        @keyframes heartLineMove {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .love-text {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            animation: textAppear 3s ease-in-out 8s forwards, textBounce 2s ease-in-out 11s infinite, textGradient 4s ease infinite 8s;
+            background: linear-gradient(45deg, #ff6b9d, #ffa8cc, #fff, #ff6b9d);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes textAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0) rotate(-180deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes textBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translate(-50%, -50%) translateY(0) scale(1);
+            }
+            40% {
+                transform: translate(-50%, -50%) translateY(-20px) scale(1.05);
+            }
+            60% {
+                transform: translate(-50%, -50%) translateY(-10px) scale(1.02);
+            }
+        }
+
+        @keyframes textGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(2);
+            }
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5em;
+            color: #ff6b9d;
+            opacity: 0;
+            animation: floatingHeart 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatingHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(10px) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(-100px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-120px) scale(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="love-text">
+            I love you so much my beautiful angel!!<br>I miss you every day.
+        </div>
+    </div>
+
+    <script>
+        // spinny lines
+        function createSpinningLines() {
+            const container = document.querySelector('.container');
+            
+            // rnadom lines
+            for (let i = 0; i < 50; i++) {
+                const line = document.createElement('div');
+                line.className = 'spinning-line';
+                
+                const height = 50 + Math.random() * 150;
+                line.style.height = `${height}px`;
+                line.style.left = `${Math.random() * 100}%`;
+                line.style.top = `${Math.random() * 100}%`;
+                line.style.animationDelay = `${Math.random() * 2}s`;
+                
+                container.appendChild(line);
+            }
+        }
+
+        // heart lines
+        function createHeartFormingLines() {
+            const container = document.querySelector('.container');
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            // curve it
+            const heartLines = [
+                // left
+                {startX: centerX - 70, startY: centerY - 90, endX: centerX - 50, endY: centerY - 110},
+                {startX: centerX - 50, startY: centerY - 110, endX: centerX - 25, endY: centerY - 105},
+                {startX: centerX - 25, startY: centerY - 105, endX: centerX - 10, endY: centerY - 85},
+                {startX: centerX - 10, startY: centerY - 85, endX: centerX, endY: centerY - 50},
+                
+                // right
+                {startX: centerX, startY: centerY - 50, endX: centerX + 10, endY: centerY - 85},
+                {startX: centerX + 10, startY: centerY - 85, endX: centerX + 25, endY: centerY - 105},
+                {startX: centerX + 25, startY: centerY - 105, endX: centerX + 50, endY: centerY - 110},
+                {startX: centerX + 50, startY: centerY - 110, endX: centerX + 70, endY: centerY - 90},
+                
+                // left
+                {startX: centerX - 70, startY: centerY - 90, endX: centerX - 75, endY: centerY - 60},
+                {startX: centerX - 75, startY: centerY - 60, endX: centerX - 65, endY: centerY - 30},
+                {startX: centerX - 65, startY: centerY - 30, endX: centerX - 50, endY: centerY},
+                {startX: centerX - 50, startY: centerY, endX: centerX - 30, endY: centerY + 30},
+                {startX: centerX - 30, startY: centerY + 30, endX: centerX - 15, endY: centerY + 55},
+                {startX: centerX - 15, startY: centerY + 55, endX: centerX, endY: centerY + 80},
+                
+                // right
+                {startX: centerX + 70, startY: centerY - 90, endX: centerX + 75, endY: centerY - 60},
+                {startX: centerX + 75, startY: centerY - 60, endX: centerX + 65, endY: centerY - 30},
+                {startX: centerX + 65, startY: centerY - 30, endX: centerX + 50, endY: centerY},
+                {startX: centerX + 50, startY: centerY, endX: centerX + 30, endY: centerY + 30},
+                {startX: centerX + 30, startY: centerY + 30, endX: centerX + 15, endY: centerY + 55},
+                {startX: centerX + 15, startY: centerY + 55, endX: centerX, endY: centerY + 80},
+                
+                // more
+                {startX: centerX - 80, startY: centerY - 75, endX: centerX - 70, endY: centerY - 90},
+                {startX: centerX + 80, startY: centerY - 75, endX: centerX + 70, endY: centerY - 90},
+                {startX: centerX - 45, startY: centerY - 108, endX: centerX - 35, endY: centerY - 100},
+                {startX: centerX + 45, startY: centerY - 108, endX: centerX + 35, endY: centerY - 100}
+            ];
+
+            // more smooth
+            heartLines.forEach((heartLine, index) => {
+                setTimeout(() => {
+                    // random
+                    const edge = Math.floor(Math.random() * 4);
+                    let startX, startY;
+                    
+                    switch(edge) {
+                        case 0: // top
+                            startX = Math.random() * window.innerWidth;
+                            startY = -50;
+                            break;
+                        case 1: // right
+                            startX = window.innerWidth + 50;
+                            startY = Math.random() * window.innerHeight;
+                            break;
+                        case 2: // bottom
+                            startX = Math.random() * window.innerWidth;
+                            startY = window.innerHeight + 50;
+                            break;
+                        case 3: // left
+                            startX = -50;
+                            startY = Math.random() * window.innerHeight;
+                            break;
+                    }
+
+                    // line to heart
+                    const deltaX = heartLine.startX - startX;
+                    const deltaY = heartLine.startY - startY;
+                    const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+                    const angle = Math.atan2(deltaY, deltaX);
+
+                    const line = document.createElement('div');
+                    line.className = 'heart-forming-line';
+                    line.style.left = `${startX}px`;
+                    line.style.top = `${startY}px`;
+                    line.style.width = `${distance}px`;
+                    line.style.transform = `rotate(${angle}rad)`;
+                    line.style.animationDelay = `0s`;
+
+                    container.appendChild(line);
+
+                    // final heart
+                    setTimeout(() => {
+                        const heartDeltaX = heartLine.endX - heartLine.startX;
+                        const heartDeltaY = heartLine.endY - heartLine.startY;
+                        const heartDistance = Math.sqrt(heartDeltaX ** 2 + heartDeltaY ** 2);
+                        const heartAngle = Math.atan2(heartDeltaY, heartDeltaX);
+                        
+                        line.style.transition = 'all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        line.style.left = `${heartLine.startX}px`;
+                        line.style.top = `${heartLine.startY}px`;
+                        line.style.width = `${heartDistance}px`;
+                        line.style.transform = `rotate(${heartAngle}rad)`;
+                        line.style.background = 'linear-gradient(90deg, #ff1744, #ff1744)';
+                        line.style.height = '8px';
+                        line.style.borderRadius = '4px';
+                        line.style.boxShadow = '0 0 20px rgba(255, 23, 68, 0.9)';
+                        
+                        // more smoothie
+                        setTimeout(() => {
+                            line.style.transition = 'all 2.5s cubic-bezier(0.19, 1, 0.22, 1)';
+                            line.style.background = 'linear-gradient(90deg, #ff1744, #e91e63, #ff6b9d, #e91e63, #ff1744)';
+                            line.style.height = '12px';
+                            line.style.borderRadius = '6px';
+                            line.style.boxShadow = `
+                                0 0 30px rgba(255, 23, 68, 1), 
+                                0 0 60px rgba(255, 23, 68, 0.8), 
+                                inset 0 0 10px rgba(255, 255, 255, 0.4)`;
+                            line.style.filter = 'blur(1.5px)';
+                            line.style.opacity = '0.95';
+                            line.style.border = '1px solid rgba(255, 23, 68, 0.6)';
+                        }, 1500);
+
+                        // it dondon me
+                        setTimeout(() => {
+                            line.style.transition = 'all 2s ease-out';
+                            line.style.height = '14px';
+                            line.style.borderRadius = '7px';
+                            line.style.filter = 'blur(2px)';
+                            line.style.opacity = '0.9';
+                            line.style.background = 'linear-gradient(90deg, #ff1744, #e91e63, #ff1744)';
+                            line.style.boxShadow = `
+                                0 0 40px rgba(255, 23, 68, 1), 
+                                0 0 80px rgba(255, 23, 68, 0.8),
+                                inset 0 0 8px rgba(255, 255, 255, 0.5)`;
+                        }, 3000);
+                    }, 2500);
+
+                    // permanent
+                }, index * 120);
+            });
+        }
+
+        // sparkly oooo
+        function createSparkles() {
+            const container = document.querySelector('.container');
+            
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // heart area
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const offsetX = (Math.random() - 0.5) * 300;
+                const offsetY = (Math.random() - 0.5) * 300;
+                
+                sparkle.style.left = `${centerX + offsetX}px`;
+                sparkle.style.top = `${centerY + offsetY}px`;
+                sparkle.style.animationDelay = `${Math.random() * 1}s`;
+                container.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    if (container.contains(sparkle)) {
+                        container.removeChild(sparkle);
+                    }
+                }, 2000);
+            }, 600);
+        }
+
+        // more hearts for my angel
+        function createFloatingHearts() {
+            const container = document.querySelector('.container');
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = '💖';
+                
+                // center it
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const offsetX = (Math.random() - 0.5) * 200;
+                const offsetY = (Math.random() - 0.5) * 200;
+                
+                heart.style.left = `${centerX + offsetX}px`;
+                heart.style.top = `${centerY + offsetY + 50}px`;
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    if (container.contains(heart)) {
+                        container.removeChild(heart);
+                    }
+                }, 6000);
+            }, 3000);
+        }
+
+        // animate
+        window.addEventListener('load', () => {
+            // spinny
+            createSpinningLines();
+            
+            // heart
+            setTimeout(() => {
+                createHeartFormingLines();
+            }, 2000);
+            
+            // effects
+            setTimeout(() => {
+                createSparkles();
+                createFloatingHearts();
+            }, 9000);
+        });
+    </script>
+</body>
+</html>
