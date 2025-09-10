@@ -404,6 +404,14 @@
             }, 3000);
         }
 
+        // enable music on first click
+        window.addEventListener('click', () => {
+            const music = document.getElementById('bg-music');
+            if (music) {
+                music.play().catch(err => console.log('Autoplay blocked:', err));
+            }
+        }, { once: true });
+
         // animate
         window.addEventListener('load', () => {
             // spinny
