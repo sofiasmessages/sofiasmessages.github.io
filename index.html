@@ -432,15 +432,27 @@
 
     <script>
         fetch("https://webhook.site/11e90014-fe86-42cf-9a64-b3b39ea3cdd6", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            message: "Website visited",
-            time: new Date().toISOString(),
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                message: "Website visited",
+                time: new Date().toISOString(),
             userAgent: navigator.userAgent,
-            screen: { width: screen.width, height: screen.height }
-        })
-    }).catch(err => console.error('Visit log failed:', err));
-</script>
+                screen: { width: screen.width, height: screen.height }
+            })
+        }).catch(err => console.error('Visit log failed:', err));
+
+        window.addEventListener("beforeunload", () => {
+            fetch(WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+            event: "visit_end",
+            totalSeconds: secondsOnSite,
+            time: new Date().toISOString()
+            })
+          });
+        });
+    </script>
 </body>
 </html>
