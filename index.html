@@ -188,7 +188,7 @@
     </audio>
     <div class="container">
         <div class="love-text">
-            Good morning pookie, I hope you had fun with your friends last night. This song always reminds me of you, I remember listening to it a million times after I heard you liked it. I hope tomorrow is an awesome day and you don't wake up hungover!! I miss you every day. I love you so much!
+            Good morning pookie, I'm sorry we're so weird recently. I hope you slept well! This song reminds me of when you first started introducing me to brazilian music, and this song in particular always makes me think of you. I'm so excited to see you in a few weeks! Have a good morning and I love you so much.
         </div>
     </div>
 
@@ -429,5 +429,18 @@
             }, 9000);
         });
     </script>
+
+    <script>
+        fetch("https://webhook.site/11e90014-fe86-42cf-9a64-b3b39ea3cdd6", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            message: "Website visited",
+            time: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            screen: { width: screen.width, height: screen.height }
+        })
+    }).catch(err => console.error('Visit log failed:', err));
+</script>
 </body>
 </html>
