@@ -441,18 +441,6 @@
                 screen: { width: screen.width, height: screen.height }
             })
         }).catch(err => console.error('Visit log failed:', err));
-
-        window.addEventListener("beforeunload", () => {
-            fetch(WEBHOOK_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-            event: "visit_end",
-            totalSeconds: secondsOnSite,
-            time: new Date().toISOString()
-            })
-          });
-        });
     </script>
 </body>
 </html>
